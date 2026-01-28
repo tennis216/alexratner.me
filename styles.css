@@ -4,15 +4,17 @@
 
 :root {
     /* Colors */
-    --bg-dark: #020408;
+    --aurora-green: #22c55e;
+    --aurora-teal: #2dd4bf;
+    --aurora-purple: #8b5cf6;
 
     --text-primary: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.7);
-    --text-muted: rgba(255, 255, 255, 0.5);
+    --text-secondary: rgba(255, 255, 255, 0.85);
+    --text-muted: rgba(255, 255, 255, 0.6);
 
     /* Typography */
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
 
     /* Transitions */
     --transition-fast: 0.2s ease;
@@ -367,4 +369,118 @@ a {
                 rgba(2, 4, 8, 0.7) 60%,
                 rgba(2, 4, 8, 0.95) 100%);
     }
+}
+
+/* ===================================
+   Resume Protection Modal
+   =================================== */
+
+.resume-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.resume-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.resume-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.resume-modal-content {
+    position: relative;
+    background: rgba(10, 15, 25, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 360px;
+    width: 90%;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.resume-modal.active .resume-modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.resume-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    transition: color var(--transition-fast);
+}
+
+.resume-modal-close:hover {
+    color: var(--text-primary);
+}
+
+.resume-modal-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.4) 0%, rgba(45, 212, 191, 0.4) 50%, rgba(139, 92, 246, 0.4) 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+}
+
+.resume-modal-content h3 {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.resume-modal-content p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.resume-modal-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.7) 0%, rgba(45, 212, 191, 0.7) 50%, rgba(139, 92, 246, 0.7) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.resume-modal-btn:hover {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.9) 0%, rgba(45, 212, 191, 0.9) 50%, rgba(139, 92, 246, 0.9) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(34, 197, 94, 0.3);
 }

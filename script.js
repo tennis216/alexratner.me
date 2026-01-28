@@ -50,3 +50,31 @@ function initMouseReveal() {
         }
     }, { passive: true });
 }
+
+/**
+ * Resume protection modal
+ * Requires user interaction to access resume - blocks automated bots
+ */
+function openResumeModal(event) {
+    event.preventDefault();
+    const modal = document.getElementById('resumeModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeResumeModal() {
+    const modal = document.getElementById('resumeModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeResumeModal();
+    }
+});
